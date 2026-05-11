@@ -4,22 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>숭의여자고등학교 99회 동창회</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #0E0E12;
-    --surface: #16161C;
-    --surface2: #1E1E26;
-    --border: rgba(255,255,255,0.07);
-    --rose: #D4758A;
-    --rose-light: #E8A0B0;
-    --rose-dim: rgba(212,117,138,0.15);
-    --text: #F0EDE8;
-    --text-muted: #8A8490;
-    --text-sub: #C4BFC8;
-    --accent: #C4A882;
+    --bg: #FAF7F4;
+    --bg2: #F3EEE9;
+    --surface: #FFFFFF;
+    --border: rgba(180,145,130,0.18);
+    --border2: rgba(180,145,130,0.32);
+    --rose: #C25B72;
+    --rose-light: #E8899A;
+    --rose-pale: #F7EBEd;
+    --rose-dim: rgba(194,91,114,0.08);
+    --text: #2A2020;
+    --text-muted: #9E8A85;
+    --text-sub: #6B5757;
+    --accent: #B08B6A;
+    --sage: #7A9E8A;
+    --cream: #EDE5DC;
   }
 
   body {
@@ -29,17 +33,45 @@
     align-items: center;
     justify-content: center;
     font-family: 'Noto Sans KR', sans-serif;
-    padding: 24px 16px;
+    padding: 32px 16px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Soft background pattern */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 10% 20%, rgba(194,91,114,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 90% 80%, rgba(176,139,106,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(122,158,138,0.05) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Subtle dot grid */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(180,145,130,0.15) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
   }
 
   .card {
     width: 100%;
-    max-width: 400px;
-    animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) both;
+    max-width: 420px;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both;
   }
 
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(32px); }
+    from { opacity: 0; transform: translateY(28px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
@@ -48,90 +80,116 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     padding: 0 2px;
   }
   .top-label-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--border));
+    flex: 1; height: 1px;
+    background: linear-gradient(to right, transparent, var(--border2));
   }
   .top-label-line.r {
-    background: linear-gradient(to left, transparent, var(--border));
+    background: linear-gradient(to left, transparent, var(--border2));
   }
   .top-label-text {
-    font-size: 10px;
-    letter-spacing: 0.35em;
+    font-size: 9.5px;
+    letter-spacing: 0.4em;
     color: var(--text-muted);
     text-transform: uppercase;
     white-space: nowrap;
+    font-weight: 500;
   }
 
   /* ── 메인 패널 ── */
   .main-panel {
     background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
+    border: 1px solid var(--border2);
+    border-radius: 20px;
     overflow: hidden;
+    box-shadow:
+      0 2px 0 rgba(180,145,130,0.12),
+      0 8px 24px rgba(90,50,50,0.06),
+      0 32px 64px rgba(90,50,50,0.06);
   }
 
   /* ── 히어로 ── */
   .hero {
-    padding: 44px 32px 36px;
+    padding: 48px 32px 38px;
     position: relative;
     text-align: center;
-    border-bottom: 1px solid var(--border);
     overflow: hidden;
+    background: linear-gradient(160deg, #FFF9F7 0%, #FDEFEF 40%, #FDF5EE 100%);
+    border-bottom: 1px solid var(--border);
   }
 
-  .hero::before {
-    content: '';
+  /* Decorative floral rings */
+  .hero-ring {
     position: absolute;
-    top: -60px; left: 50%; transform: translateX(-50%);
-    width: 280px; height: 280px;
-    background: radial-gradient(circle, rgba(212,117,138,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    border: 1px solid rgba(194,91,114,0.1);
     pointer-events: none;
   }
+  .hero-ring-1 {
+    width: 260px; height: 260px;
+    top: -80px; left: 50%;
+    transform: translateX(-50%);
+  }
+  .hero-ring-2 {
+    width: 340px; height: 340px;
+    top: -120px; left: 50%;
+    transform: translateX(-50%);
+    border-color: rgba(194,91,114,0.05);
+  }
+
+  /* Corner flourish */
+  .flourish {
+    position: absolute;
+    width: 60px; height: 60px;
+    opacity: 0.18;
+  }
+  .flourish-tl { top: 14px; left: 14px; }
+  .flourish-tr { top: 14px; right: 14px; transform: scaleX(-1); }
 
   .class-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--rose-dim);
-    border: 1px solid rgba(212,117,138,0.3);
-    border-radius: 24px;
-    padding: 6px 16px;
-    margin-bottom: 22px;
+    background: var(--rose-pale);
+    border: 1px solid rgba(194,91,114,0.25);
+    border-radius: 30px;
+    padding: 6px 18px;
+    margin-bottom: 24px;
   }
   .class-badge-dot {
-    width: 5px; height: 5px;
+    width: 4px; height: 4px;
     border-radius: 50%;
     background: var(--rose);
+    opacity: 0.7;
   }
   .class-badge-text {
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 500;
     letter-spacing: 0.2em;
-    color: var(--rose-light);
+    color: var(--rose);
   }
 
   .school-name {
     font-family: 'Noto Serif KR', serif;
-    font-size: 28px;
+    font-size: 30px;
     font-weight: 600;
     color: var(--text);
-    letter-spacing: 0.04em;
-    line-height: 1.3;
+    letter-spacing: 0.05em;
+    line-height: 1.25;
     margin-bottom: 10px;
   }
 
   .reunion-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 15px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
     font-style: italic;
     color: var(--rose);
-    letter-spacing: 0.08em;
-    margin-bottom: 20px;
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+    font-weight: 400;
   }
 
   .hero-divider {
@@ -141,21 +199,26 @@
     gap: 10px;
   }
   .hero-divider-line {
-    width: 40px; height: 1px;
-    background: var(--border);
+    flex: 1; max-width: 50px; height: 1px;
+    background: rgba(194,91,114,0.25);
   }
-  .hero-divider-icon {
-    color: var(--rose);
-    font-size: 12px;
+  .hero-divider-inner {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--rose-light);
+    font-size: 10px;
+    letter-spacing: 0.3em;
   }
 
   /* ── 정보 섹션 ── */
   .info-section {
-    padding: 28px 28px 24px;
+    padding: 30px 28px 26px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
     border-bottom: 1px solid var(--border);
+    background: #FFFFFF;
   }
 
   .info-row {
@@ -164,70 +227,83 @@
     gap: 16px;
     animation: slideIn 0.5s cubic-bezier(0.16,1,0.3,1) both;
   }
-  .info-row:nth-child(1) { animation-delay: 0.15s; }
-  .info-row:nth-child(2) { animation-delay: 0.25s; }
-  .info-row:nth-child(3) { animation-delay: 0.35s; }
+  .info-row:nth-child(1) { animation-delay: 0.2s; }
+  .info-row:nth-child(2) { animation-delay: 0.32s; }
+  .info-row:nth-child(3) { animation-delay: 0.44s; }
 
   @keyframes slideIn {
-    from { opacity: 0; transform: translateX(-10px); }
+    from { opacity: 0; transform: translateX(-8px); }
     to   { opacity: 1; transform: translateX(0); }
   }
 
   .info-icon-wrap {
-    width: 36px; height: 36px;
-    border-radius: 10px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
+    width: 38px; height: 38px;
+    border-radius: 11px;
+    background: var(--rose-pale);
+    border: 1px solid rgba(194,91,114,0.18);
     display: flex; align-items: center; justify-content: center;
-    font-size: 15px;
+    font-size: 16px;
     flex-shrink: 0;
     margin-top: 1px;
   }
 
-  .info-content {}
   .info-key {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
     color: var(--text-muted);
     text-transform: uppercase;
-    margin-bottom: 3px;
+    margin-bottom: 4px;
   }
   .info-val {
-    font-size: 14px;
+    font-size: 14.5px;
     font-weight: 500;
     color: var(--text);
-    line-height: 1.5;
+    line-height: 1.4;
   }
   .info-val-sub {
     font-size: 12px;
-    color: var(--text-sub);
-    margin-top: 2px;
+    color: var(--text-muted);
+    margin-top: 3px;
     font-weight: 300;
   }
 
   /* ── 메시지 ── */
   .message-section {
-    padding: 24px 28px;
+    padding: 28px 32px;
     border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, #FEFCFB 0%, #FDF8F5 100%);
+    position: relative;
+  }
+  .message-section::before {
+    content: '❝';
+    position: absolute;
+    top: 20px; left: 22px;
+    font-size: 36px;
+    color: rgba(194,91,114,0.12);
+    font-family: 'Cormorant Garamond', serif;
+    line-height: 1;
   }
   .message-text {
     font-family: 'Noto Serif KR', serif;
     font-size: 13.5px;
     color: var(--text-sub);
-    line-height: 2.1;
+    line-height: 2.2;
     text-align: center;
+    position: relative;
+    z-index: 1;
   }
   .message-text em {
     font-style: normal;
-    color: var(--rose-light);
+    color: var(--rose);
     font-weight: 600;
   }
 
   /* ── RSVP ── */
   .rsvp-section {
-    padding: 24px 28px;
+    padding: 26px 28px;
     border-bottom: 1px solid var(--border);
+    background: #FFFFFF;
   }
   .rsvp-header {
     display: flex;
@@ -236,33 +312,50 @@
     margin-bottom: 14px;
   }
   .rsvp-title {
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.28em;
     color: var(--text-muted);
     text-transform: uppercase;
   }
   .rsvp-deadline {
-    font-size: 11px;
+    font-size: 11.5px;
     color: var(--rose);
-    font-weight: 500;
+    font-weight: 600;
+    background: var(--rose-pale);
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(194,91,114,0.2);
   }
   .rsvp-btn {
     display: block;
     width: 100%;
-    padding: 14px;
-    background: var(--rose);
+    padding: 15px;
+    background: linear-gradient(135deg, var(--rose) 0%, #D4718A 100%);
     color: #fff;
     border: none;
-    border-radius: 10px;
-    font-size: 14px;
+    border-radius: 12px;
+    font-size: 14.5px;
     font-weight: 700;
     font-family: 'Noto Sans KR', sans-serif;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
+    transition: all 0.2s;
+    box-shadow: 0 4px 16px rgba(194,91,114,0.28), 0 1px 0 rgba(255,255,255,0.2) inset;
+    position: relative;
+    overflow: hidden;
   }
-  .rsvp-btn:hover { background: var(--rose-light); transform: translateY(-1px); }
+  .rsvp-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%);
+  }
+  .rsvp-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(194,91,114,0.36);
+  }
+  .rsvp-btn:active { transform: translateY(0); }
 
   /* ── 연락처 ── */
   .contact-section {
@@ -270,33 +363,37 @@
     border-bottom: 1px solid var(--border);
     display: flex;
     gap: 8px;
+    background: var(--bg);
   }
   .contact-pill {
     flex: 1;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 12px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 12px;
+    padding: 13px 10px;
     text-align: center;
+    box-shadow: 0 1px 3px rgba(90,50,50,0.04);
   }
   .contact-pill-label {
     font-size: 9px;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.22em;
     color: var(--text-muted);
     text-transform: uppercase;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
+    font-weight: 600;
   }
   .contact-pill-val {
-    font-size: 12px;
+    font-size: 12.5px;
     font-weight: 500;
     color: var(--text-sub);
   }
 
   /* ── 공유 버튼 ── */
   .share-section {
-    padding: 18px 28px 22px;
+    padding: 18px 28px 24px;
     display: flex;
     gap: 10px;
+    background: var(--bg);
   }
   .share-btn {
     flex: 1;
@@ -305,47 +402,64 @@
     justify-content: center;
     gap: 7px;
     padding: 12px;
-    border-radius: 10px;
+    border-radius: 11px;
     border: none;
-    font-size: 12px;
+    font-size: 12.5px;
     font-weight: 600;
     font-family: 'Noto Sans KR', sans-serif;
     cursor: pointer;
-    transition: opacity 0.2s, transform 0.15s;
-    letter-spacing: 0.03em;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
   }
-  .share-btn:hover { opacity: 0.85; transform: translateY(-1px); }
-  .kakao-btn { background: #FEE500; color: #3A1D1D; }
-  .copy-btn  { background: var(--surface2); color: var(--text-sub); border: 1px solid var(--border); }
+  .share-btn:hover { transform: translateY(-1px); }
+  .kakao-btn {
+    background: #FEE500;
+    color: #3A1D1D;
+    box-shadow: 0 2px 10px rgba(254,229,0,0.35);
+  }
+  .copy-btn {
+    background: var(--surface);
+    color: var(--text-sub);
+    border: 1px solid var(--border2);
+    box-shadow: 0 1px 4px rgba(90,50,50,0.06);
+  }
 
   /* ── 하단 태그라인 ── */
   .tagline {
-    margin-top: 18px;
+    margin-top: 20px;
     text-align: center;
-    font-size: 11px;
+    font-size: 10px;
     color: var(--text-muted);
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.7;
   }
 
   /* ── 토스트 ── */
   .toast {
     position: fixed;
     bottom: 28px; left: 50%;
-    transform: translateX(-50%) translateY(16px);
-    background: #1E1E26;
-    border: 1px solid rgba(212,117,138,0.4);
-    color: var(--rose-light);
+    transform: translateX(-50%) translateY(12px);
+    background: var(--text);
+    color: #fff;
     font-size: 13px;
     font-family: 'Noto Sans KR', sans-serif;
-    padding: 11px 22px;
-    border-radius: 24px;
+    padding: 11px 24px;
+    border-radius: 30px;
     opacity: 0;
-    transition: all 0.3s;
+    transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
     pointer-events: none;
     white-space: nowrap;
     z-index: 100;
+    box-shadow: 0 4px 20px rgba(42,32,32,0.2);
   }
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* SVG flourish */
+  .floral-svg {
+    width: 58px; height: 58px;
+    opacity: 0.22;
+  }
 </style>
 </head>
 <body>
@@ -362,16 +476,44 @@
 
     <!-- 히어로 -->
     <div class="hero">
+      <div class="hero-ring hero-ring-1"></div>
+      <div class="hero-ring hero-ring-2"></div>
+
+      <!-- Corner flourishes -->
+      <svg class="flourish flourish-tl floral-svg" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 55 Q5 5 55 5" stroke="#C25B72" stroke-width="1" fill="none"/>
+        <path d="M5 55 Q10 30 30 20" stroke="#C25B72" stroke-width="0.8" fill="none"/>
+        <circle cx="15" cy="15" r="3" fill="#C25B72" opacity="0.5"/>
+        <circle cx="25" cy="10" r="2" fill="#C25B72" opacity="0.4"/>
+        <circle cx="10" cy="28" r="1.5" fill="#C25B72" opacity="0.35"/>
+        <path d="M18 18 Q24 12 28 16 Q24 20 18 18Z" fill="#C25B72" opacity="0.35"/>
+        <path d="M8 30 Q14 24 18 28 Q14 32 8 30Z" fill="#C25B72" opacity="0.3"/>
+      </svg>
+      <svg class="flourish flourish-tr floral-svg" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 55 Q5 5 55 5" stroke="#C25B72" stroke-width="1" fill="none"/>
+        <path d="M5 55 Q10 30 30 20" stroke="#C25B72" stroke-width="0.8" fill="none"/>
+        <circle cx="15" cy="15" r="3" fill="#C25B72" opacity="0.5"/>
+        <circle cx="25" cy="10" r="2" fill="#C25B72" opacity="0.4"/>
+        <circle cx="10" cy="28" r="1.5" fill="#C25B72" opacity="0.35"/>
+        <path d="M18 18 Q24 12 28 16 Q24 20 18 18Z" fill="#C25B72" opacity="0.35"/>
+        <path d="M8 30 Q14 24 18 28 Q14 32 8 30Z" fill="#C25B72" opacity="0.3"/>
+      </svg>
+
       <div class="class-badge">
         <div class="class-badge-dot"></div>
-        <span class="class-badge-text">제 99회 졸업 · 2022년</span>
+        <span class="class-badge-text">제 99회 졸업</span>
         <div class="class-badge-dot"></div>
       </div>
+
       <div class="school-name">숭의여자고등학교</div>
       <div class="reunion-title">동창회에 초대합니다</div>
+
       <div class="hero-divider">
         <div class="hero-divider-line"></div>
-        <span class="hero-divider-icon">✦</span>
+        <div class="hero-divider-inner">
+          <span>✦</span>
+          <span>✦</span>
+        </div>
         <div class="hero-divider-line"></div>
       </div>
     </div>
@@ -382,16 +524,16 @@
         <div class="info-icon-wrap">📅</div>
         <div class="info-content">
           <div class="info-key">일시</div>
-          <div class="info-val">2025년 6월 21일 (토)</div>
-          <div class="info-val-sub">오후 6시 30분 · 약 3시간 진행</div>
+          <div class="info-val">2026년 7월 25일 (토)</div>
+          <div class="info-val-sub">오후 6시 ~ 10시</div>
         </div>
       </div>
       <div class="info-row">
         <div class="info-icon-wrap">📍</div>
         <div class="info-content">
           <div class="info-key">장소</div>
-          <div class="info-val">미정 (추후 공지 예정)</div>
-          <div class="info-val-sub">서울 시내 예정</div>
+          <div class="info-val">언디파인 파티룸 노량진점</div>
+          <div class="info-val-sub">서울 동작구 장승배기로 170 7층</div>
         </div>
       </div>
       <div class="info-row">
@@ -399,7 +541,6 @@
         <div class="info-content">
           <div class="info-key">회비</div>
           <div class="info-val">3만 원</div>
-          <div class="info-val-sub">식사 · 음료 포함 · 당일 납부</div>
         </div>
       </div>
     </div>
@@ -430,34 +571,24 @@
     <div class="contact-section">
       <div class="contact-pill">
         <div class="contact-pill-label">총무</div>
-        <div class="contact-pill-val">홍길동</div>
+        <div class="contact-pill-val">조이은</div>
       </div>
       <div class="contact-pill">
         <div class="contact-pill-label">연락처</div>
-        <div class="contact-pill-val">010-0000-0000</div>
-      </div>
-      <div class="contact-pill">
-        <div class="contact-pill-label">오픈채팅</div>
-        <div class="contact-pill-val">링크 별도 공유</div>
+        <div class="contact-pill-val">010-2325-6519</div>
       </div>
     </div>
 
     <!-- 공유 버튼 -->
     <div class="share-section">
-      <button class="share-btn kakao-btn" onclick="shareKakao()">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="#3A1D1D">
-          <path d="M12 3C6.477 3 2 6.477 2 11c0 2.917 1.617 5.487 4.08 7.077L5 21l3.3-1.98C9.4 19.328 10.68 19.5 12 19.5c5.523 0 10-3.477 10-8.5S17.523 3 12 3z"/>
-        </svg>
-        카카오톡 공유
-      </button>
-      <button class="share-btn copy-btn" onclick="copyLink()">
+      <button class="share-btn copy-btn" style="flex:1" onclick="copyLink()">
         🔗 링크 복사
       </button>
     </div>
 
   </div>
 
-  <div class="tagline">숭의여자고등학교 99회 · Class of 2022</div>
+  <div class="tagline">숭의여자고등학교 99회 졸업</div>
 
 </div>
 
@@ -465,27 +596,12 @@
 
 <script>
 function copyLink() {
-  const url = window.location.href;
+  const url = 'https://isally03.github.io/sungui-reunion-99/sungui_reunion.html';
   navigator.clipboard.writeText(url).then(() => {
     showToast('링크가 복사되었습니다!');
   }).catch(() => {
     prompt('아래 링크를 복사하세요:', url);
   });
-}
-
-function shareKakao() {
-  const url = window.location.href;
-  if (navigator.share) {
-    navigator.share({
-      title: '숭의여자고등학교 99회 동창회',
-      text: '졸업 후 처음 만나는 우리들의 자리 🌸 6월 21일(토) 동창회에 초대합니다!',
-      url: url
-    });
-  } else {
-    navigator.clipboard.writeText(url).then(() => {
-      showToast('링크 복사 완료! 카카오톡에 붙여넣기 해주세요 🙌');
-    });
-  }
 }
 
 function showToast(msg) {
